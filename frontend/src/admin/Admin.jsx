@@ -28,7 +28,9 @@ const Admin = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch('http://localhost:3500/all-books');
+        const response = await fetch(
+          'https://website-rumah-baca-cibolang-api.vercel.app/all-books'
+        );
         const data = await response.json();
         setBooks(data);
       } catch (error) {
@@ -65,8 +67,8 @@ const Admin = () => {
 
     try {
       const url = isEditing
-        ? `http://localhost:3500/book/${bookId}` // URL untuk update buku
-        : 'http://localhost:3500/upload-book'; // URL untuk menambahkan buku baru
+        ? `https://website-rumah-baca-cibolang-api.vercel.app/book/${bookId}` // URL untuk update buku
+        : 'https://website-rumah-baca-cibolang-api.vercel.app/upload-book'; // URL untuk menambahkan buku baru
 
       const method = isEditing ? 'PATCH' : 'POST'; // Menentukan metode HTTP
 
@@ -96,7 +98,9 @@ const Admin = () => {
 
         // Refresh daftar buku
         const updatedBooks = await (
-          await fetch('http://localhost:3500/all-books')
+          await fetch(
+            'https://website-rumah-baca-cibolang-api.vercel.app/all-books'
+          )
         ).json();
         setBooks(updatedBooks);
       } else {
@@ -124,14 +128,19 @@ const Admin = () => {
   // Fungsi untuk klik Hapus
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3500/book/${id}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `https://website-rumah-baca-cibolang-api.vercel.app/book/${id}`,
+        {
+          method: 'DELETE',
+        }
+      );
 
       if (response.ok) {
         alert('Buku berhasil dihapus!');
         const updatedBooks = await (
-          await fetch('http://localhost:3500/all-books')
+          await fetch(
+            'https://website-rumah-baca-cibolang-api.vercel.app/all-books'
+          )
         ).json();
         setBooks(updatedBooks);
       } else {

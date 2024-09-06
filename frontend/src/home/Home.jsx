@@ -15,7 +15,7 @@ const Home = () => {
     try {
       const queryParam = category ? `?category=${category}` : '';
       const response = await fetch(
-        `http://localhost:3500/all-books${queryParam}`
+        `https://website-rumah-baca-cibolang-api.vercel.app/all-books${queryParam}`
       );
       const data = await response.json();
       setBooks(data);
